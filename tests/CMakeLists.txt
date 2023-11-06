@@ -42,6 +42,8 @@ set(TEST_FILES
 	no_transfer_get_device.F90
 	no_transfer_get_host.F90
 	pointer_to_owner_wrapper.F90
+	resize_owner.F90
+	resize_owner2.F90
 	sync_device.F90
 	sync_host.F90
 	test_crc64.F90
@@ -55,6 +57,7 @@ set(FAILING_TEST_FILES
 set(ABOR1_TEST_FILES
 	get_view_when_ndevfresh.F90
 	get_view_when_unallocated.F90
+	resize_wrapper.F90
 	)
 
 set (CMAKE_Fortran_MODULE_DIRECTORY ${CMAKE_BINARY_DIR}/tests/modules)
