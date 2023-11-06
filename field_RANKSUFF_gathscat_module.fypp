@@ -69,7 +69,7 @@ FUNCTION PAIR_${ft.name}$_GATHER_${what}$_DATA_${mode}$ (YDPAIR, LDNULL, LDFULL,
 TYPE (${ft.name}$_GATHSCAT_PAIR), POINTER              :: YDPAIR
 LOGICAL,                                   INTENT (IN) :: LDNULL, LDFULL
 INTEGER (KIND=JPIM),                       INTENT (IN) :: KGPBLKS
-CLASS (FIELD_3IM),                POINTER              :: YDFINDS 
+CLASS (FIELD_3IM),                POINTER              :: YDFINDS
 CLASS (${ft.name}$),              POINTER, INTENT (IN) :: YLF
 
 ${ft.type}$, POINTER :: PTR(${ft.shape}$), ZTRG(${ft.shape}$), ZTRS(${ft.shape}$)
@@ -136,7 +136,7 @@ INTEGER (KIND=JPIM) :: JLONS, JBLKS, JLONG, JBLKG
 #:endif
 DO JBLKG = 1, SIZE (KNDS, 3)
 #:if what == 'DEVICE'
-!$acc loop vector private (JLONG, JBLKS, JLONS) 
+!$acc loop vector private (JLONG, JBLKS, JLONS)
 #:endif
   DO JLONG = 1, SIZE (KNDS, 2)
     JLONS = KNDS (NLONDIM, JLONG, JBLKG)
@@ -159,7 +159,7 @@ END FUNCTION PAIR_${ft.name}$_GATHER_${what}$_DATA_${mode}$
 
 SUBROUTINE PAIR_${ft.name}$_SCATTER_DATA (YDPAIR, YDFINDS)
 TYPE (${ft.name}$_GATHSCAT_PAIR), POINTER              :: YDPAIR
-CLASS (FIELD_3IM),                POINTER              :: YDFINDS 
+CLASS (FIELD_3IM),                POINTER              :: YDFINDS
 
 TYPE (${ft.name}$_GATHSCAT_PAIR), POINTER :: YLPAIR
 ${ft.type}$, POINTER :: PTRG(${ft.shape}$), PTRS(${ft.shape}$)
@@ -214,13 +214,13 @@ INTEGER (KIND=JPIM) :: JLONS, JBLKS, JLONG, JBLKG
 #:endif
 DO JBLKG = 1, SIZE (KNDS, 3)
 #:if what == 'DEVICE'
-!$acc loop vector private (JLONG, JBLKS, JLONS) 
+!$acc loop vector private (JLONG, JBLKS, JLONS)
 #:endif
   DO JLONG = 1, SIZE (KNDS, 2)
     JLONS = KNDS (NLONDIM, JLONG, JBLKG)
     JBLKS = KNDS (NBLKDIM, JLONG, JBLKG)
     IF (JLONS > 0) THEN
-      PTRS (JLONS${dc}$JBLKS) = PTRG (JLONG${dc}$JBLKG) 
+      PTRS (JLONS${dc}$JBLKS) = PTRG (JLONG${dc}$JBLKG)
     ENDIF
   ENDDO
 ENDDO
