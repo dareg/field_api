@@ -141,10 +141,15 @@ endforeach ()
 set_source_files_properties("dev_alloc_module.F90" PROPERTIES COMPILE_OPTIONS $<${HAVE_CUDA}:-cuda>)
 set_source_files_properties("host_alloc_module.F90" PROPERTIES COMPILE_OPTIONS $<${HAVE_CUDA}:-cuda>)
 
+# determine lib type
+if(BUILD_SHARED_LIBS AND HAVE_ACC)
+	message(WARNING "Can't build shared lib with OpenACC")
+	set(BUILD_SHARED_LIBS OFF)
+endif()
+
 foreach(prec ${precisions})
   ## add field_api target
   ecbuild_add_library(
-      TYPE STATIC
       TARGET ${LIBNAME}_${prec}
       SOURCES ${srcs}
       DEFINITIONS $<$<NOT:${fiat_FOUND}>:${FIELD_API_DEFINITIONS}>
