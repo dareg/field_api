@@ -89,7 +89,7 @@ CONTAINS
         CALL FIELD_ABORT ('INTERNAL ERROR: UNEXPECTED LAST_CONTIG_DIM')
     END SELECT
 
-  END FUNCTION
+  END FUNCTION ${ftn}$_COPY_FUNC
 
   SUBROUTINE ${ftn}$_COPY (HST, DEV, MAP_DEVPTR, KDIR, QUEUE)
 
@@ -271,7 +271,7 @@ CONTAINS
   ${ft.type}$, POINTER :: PTR (${ft.shape}$)
   INTEGER (KIND=JPIM) :: AFTER
   INTEGER*8 :: IPREVIOUS_STRIDE, ITHIS_STRIDE, ISIZE
-  INTEGER (KIND=JPIM) :: J, LB(${ft.rank}$)
+  INTEGER (KIND=JPIM) :: LB(${ft.rank}$)
 
   ! assume that dimension all dimensions before AFTER are contiguous...
 
