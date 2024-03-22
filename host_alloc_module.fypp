@@ -62,7 +62,10 @@ SUBROUTINE ${ft.name}$_HOST_ALLOC (HST, LBOUNDS, UBOUNDS, PINNED)
    ${ft.type}$, POINTER :: PTR(${ft.shape}$)
    TYPE(C_PTR) :: DATA
    INTEGER(C_SIZE_T) :: ARR_SIZE
-   INTEGER :: ISHAPE(${ft.rank}$), ISTAT
+#:if defined('CUDA')
+   INTEGER :: ISTAT
+#:endif
+   INTEGER :: ISHAPE(${ft.rank}$)
 #include "abor1.intfb.h"
 
    ARR_SIZE = KIND(HST)
@@ -99,7 +102,9 @@ SUBROUTINE ${ft.name}$_HOST_DEALLOC(HST, PINNED)
    LOGICAL, INTENT (IN) :: PINNED
 
    TYPE(C_PTR) :: DATA
+#:if defined('CUDA')
    INTEGER :: ISTAT
+#:endif
   
    IF(SIZE(HST) > 0)THEN
      DATA = C_LOC (HST (${ ', '.join (map (lambda i: 'LBOUND (HST, ' + str (i) + ')', range (1, ft.rank+1))) }$))
