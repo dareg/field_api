@@ -74,7 +74,6 @@ CLASS (FIELD_3IM),                POINTER              :: YDFINDS
 CLASS (${ft.name}$),              POINTER, INTENT (IN) :: YLF
 
 ${ft.type}$, POINTER :: PTR(${ft.shape}$), ZTRG(${ft.shape}$), ZTRS(${ft.shape}$)
-${ft.type}$, POINTER :: PTR1(${ft.shape}$)
 TYPE (${ft.name}$_SHUFFLE_PAIR), POINTER :: YLPAIR
 CLASS (${ft.name}$), POINTER :: YLGATH_DUMM
 INTEGER (KIND=JPIM) :: ILBOUNDS (${ft.rank}$), IUBOUNDS (${ft.rank}$)
