@@ -16,7 +16,7 @@ PROGRAM FINAL_WRAPPER_GPU
         IMPLICIT NONE
         CLASS(FIELD_2RB), POINTER :: W => NULL()
         REAL(KIND=JPRB), ALLOCATABLE :: D(:,:)
-        REAL(KIND=JPRB), POINTER :: D_GPU(:,:), D_CPU(:,:)
+        REAL(KIND=JPRB), POINTER :: D_GPU(:,:)
         INTEGER :: I,J
 
         ALLOCATE(D(10,10))

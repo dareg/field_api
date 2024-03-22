@@ -14,9 +14,10 @@ PROGRAM CHECK_GPU_NUM
         USE OPENACC
 #endif
         IMPLICIT NONE
-        INTEGER :: DEV_TYPE, NUM_GPUS = 0
+        INTEGER :: NUM_GPUS = 0
 
 #ifdef _OPENACC
+        INTEGER :: DEV_TYPE
         DEV_TYPE = ACC_GET_DEVICE_TYPE()
         NUM_GPUS = ACC_GET_NUM_DEVICES(DEV_TYPE)
 #endif
