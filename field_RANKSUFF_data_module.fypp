@@ -119,7 +119,9 @@ CONTAINS
     INTEGER (KIND=JPIM),           INTENT (IN) :: KDIR
     INTEGER (KIND=JPIM), OPTIONAL, INTENT (IN) :: QUEUE
     INTEGER (KIND=INT64)                       :: ISIZE
-    INTEGER :: ${', '.join (['J'] + list (map (lambda i: 'J' + str (i+1), range (d, ft.rank))))}$
+#:if d != ft.rank
+    INTEGER :: ${', '.join (list (map (lambda i: 'J' + str (i+1), range (d, ft.rank))))}$
+#:endif
 #ifdef _OPENACC
     TYPE(C_DEVPTR) :: DEVPTR
 #endif
