@@ -28,9 +28,9 @@ PROGRAM GPU_TO_CPU
         !$ACC KERNELS PRESENT(PTR_DEV)
 #endif
         DO I=1,11
-        DO J=1,11
-        PTR_DEV=7
-        ENDDO
+          DO J=1,11
+            PTR_DEV=7
+          ENDDO
         ENDDO
 #ifdef OMPGPU
         !$OMP END TARGET TEAMS DISTRIBUTE PARALLEL DO
@@ -41,11 +41,11 @@ PROGRAM GPU_TO_CPU
         CALL O%GET_HOST_DATA_RDONLY(PTR_HOST)
 
         DO I=1,11
-        DO J=1,11
-          IF(PTR_HOST(I,J)/=7)THEN
-                CALL FIELD_ABORT ("ERROR")
-          ENDIF
-        ENDDO
+          DO J=1,11
+            IF(PTR_HOST(I,J)/=7)THEN
+              CALL FIELD_ABORT ("ERROR")
+            ENDIF
+          ENDDO
         ENDDO
 
         CALL FIELD_DELETE(O)
