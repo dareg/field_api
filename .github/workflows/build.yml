@@ -172,12 +172,10 @@ jobs:
       if: contains( matrix.compiler, 'nvhpc' )
       shell: bash -eux {0}
       run: |
-        ${FIELD_API_TOOLS}/install-nvhpc.sh --prefix /opt/nvhpc --version 24.5
-        source /opt/nvhpc/env.sh
-        FC=pgf90 .github/tools/install-hdf5.sh
-        echo "HDF5_ROOT=${GITHUB_WORKSPACE}/hdf5-install"    >> $GITHUB_ENV
-        echo "${NVHPC_DIR}/compilers/bin"                    >> $GITHUB_PATH
-        echo "${NVHPC_DIR}/comm_libs/openmpi4/bin"           >> $GITHUB_PATH
+        curl https://developer.download.nvidia.com/hpc-sdk/ubuntu/DEB-GPG-KEY-NVIDIA-HPC-SDK | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-hpcsdk-archive-keyring.gpg
+        echo 'deb [signed-by=/usr/share/keyrings/nvidia-hpcsdk-archive-keyring.gpg] https://developer.download.nvidia.com/hpc-sdk/ubuntu/amd64 /' | sudo tee /etc/apt/sources.list.d/nvhpc.list
+        sudo apt-get update -y
+        sudo apt-get install -y nvhpc-24-5
 
     - name: Download Intel compiler
       if: contains( matrix.compiler, 'intel' )
