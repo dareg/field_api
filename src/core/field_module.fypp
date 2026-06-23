@@ -9,6 +9,7 @@
 
 MODULE FIELD_MODULE
 
+use parkind1
 #:set fieldTypeListOT = fieldType.getFieldTypeList (kinds=['JPIM', 'JPLM'])
 #:set fieldTypeListRM = fieldType.getFieldTypeList (kinds=['JPRM'])
 #:set fieldTypeListRB = fieldType.getFieldTypeList (kinds=['JPRB'])

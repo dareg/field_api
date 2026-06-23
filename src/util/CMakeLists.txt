@@ -35,7 +35,6 @@ field_api_add_object_library(
        field_api_core
        field_api_debug
        field_api_factory
-       field_api_defaults_${DEFAULT_PRECISION}
 )
 
 ## don't build precision dependent sourcefile
