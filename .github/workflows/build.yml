@@ -252,7 +252,7 @@ jobs:
         recreate_cache: ${{ matrix.caching == false }}
         dependencies: |
           ecmwf/ecbuild
-          ecmwf-ifs/fiat
+          ecmwf-ifs/fiat@naan-ec-parkind-jplm
         dependency_branch: develop
         dependency_cmake_options: |
           ecmwf-ifs/fiat: "-DCMAKE_BUILD_TYPE=${{ matrix.build_type }} -G Ninja -DENABLE_TESTS=OFF ${{ matrix.cmake_options}}"
